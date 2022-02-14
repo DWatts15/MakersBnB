@@ -11,7 +11,7 @@ class XYZ < Sinatra::Base
   end
 
   get '/test' do
-    'testing how branching works'
+    'testing how branching works test test test'
   end
 
 run! if app_file == $0
