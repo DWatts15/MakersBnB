@@ -10,5 +10,9 @@ class XYZ < Sinatra::Base
     'Hello World'
   end
 
+  get '/test' do
+    'testing how branching works'
+  end
+
 run! if app_file == $0
 end
