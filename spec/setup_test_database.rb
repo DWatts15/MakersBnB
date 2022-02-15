@@ -6,10 +6,8 @@ def setup_test_database
 end
 
 def add_row_to_test_database
-  connection = PG.connect(dbname: 'makersbnb_test')
-  
-  connection.exec("INSERT INTO spaces (name) VALUES('Property1');")
-  connection.exec("INSERT INTO spaces (name) VALUES('Property2');")
-  connection.exec("INSERT INTO spaces (name) VALUES('Property3');")
-  connection.exec("INSERT INTO spaces (name) VALUES('Property4');")
+  Property.create(name: "Property1", price: "£50", availability: "Available", description: "Good location")
+  Property.create(name: "Property2", price: "£40", availability: "Available", description: "Bad location")
+  Property.create(name: "Property3", price: "£60", availability: "Unavailable", description: "Swimming Pool")
+  Property.create(name: "Property4", price: "£70", availability: "Available", description: "Rooftop bar")
 end

@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require_relative './lib/property.rb'
 
 class MakersBnB < Sinatra::Base
   configure :development do
@@ -49,9 +50,7 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/properties' do
-    name = params['name']
-    connection = PG.connect(dbname: 'makersbnb_test')
-    connection.exec("INSERT INTO spaces (name) VALUES('#{name}')")
+    Property.create(name: params[:name], price: params[:price], availability: params[:availability], description: params[:description])
     redirect '/properties'
   end
 
