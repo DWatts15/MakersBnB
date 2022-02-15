@@ -7,7 +7,14 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/login' do
+    erb :login_index
+  end
 
+  post '/login' do
+    @username = params[:username]
+    @password = params[:password]
+
+    erb :login_index
   end
 
   get '/availability' do
