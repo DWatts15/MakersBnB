@@ -17,6 +17,28 @@ class MakersBnB < Sinatra::Base
     erb :login_index
   end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   get '/availability' do
     @properties = Property.all
     erb :'properties/index'
