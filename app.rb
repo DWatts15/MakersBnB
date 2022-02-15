@@ -18,7 +18,8 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/availability' do
-    
+    @properties = Property.all
+    erb :'properties/index'
   end
 
 run! if app_file == $0
