@@ -39,10 +39,21 @@ class MakersBnB < Sinatra::Base
 
 
 
-  get '/availability' do
+  get '/properties' do
     @properties = Property.all
     erb :'properties/index'
   end
 
-run! if app_file == $0
+  get '/properties/new' do
+    erb :'properties/new'
+  end
+
+  post '/properties' do
+    name = params['name']
+    connection = PG.connect(dbname: 'makersbnb_test')
+    connection.exec("INSERT INTO spaces (name) VALUES('#{name}')")
+    redirect '/properties'
+  end
+
+  run! if app_file == $0
 end
