@@ -20,7 +20,7 @@ class Property
 
     result = connection.exec("SELECT * FROM spaces;")
     result.map do |property| 
-      Property.new(id: property['id'], price: property['price'], availability: property['availability'], description: property['description'])
+      Property.new(id: property['id'], name: property['name'], price: property['price'], availability: property['availability'], description: property['description'])
     end
   end
 
