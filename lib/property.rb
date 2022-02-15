@@ -1,8 +1,9 @@
+require 'pg'
+
 class Property
   def self.all
-    [
-      "Property1 - £50 - Available - Good Location",
-      "Property2 - £60 - Available - Bad Location"
-    ]
+    connection = PG.connect(dbname: 'makersbnb')
+    result = connection.exec("SELECT * FROM spaces;")
+    result.map { |property| property['name']}
   end
 end

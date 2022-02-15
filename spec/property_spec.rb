@@ -5,8 +5,8 @@ describe Property do
     it 'returns all properties' do
       properties = Property.all
 
-      expect(properties).to include("Property1 - £50 - Available - Good Location")
-      expect(properties).to include("Property2 - £60 - Available - Bad Location")
+      expect(properties).to include("Property1")
+      expect(properties).to include("Property2")
     end
   end
 end
