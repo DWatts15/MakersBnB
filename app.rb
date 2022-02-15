@@ -11,7 +11,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/availability' do
-
+    
   end
 
 run! if app_file == $0
