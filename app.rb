@@ -11,12 +11,8 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/availability' do
-    property = [
-      "Property1 - £50 - Available - Good Location",
-      "Property2 - £60 - Available - Bad Location"
-    ]
-
-    property.join
+    @properties = Property.all
+    erb :'properties/index'
   end
 
 run! if app_file == $0
