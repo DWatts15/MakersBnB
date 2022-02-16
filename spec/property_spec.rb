@@ -4,11 +4,14 @@ require 'database_helper'
 describe Property do
   describe '.all' do
     it 'returns all properties' do
-      add_row_to_test_database
-      
+      property = Property.create(name: "Property1", price: "£50", availability: "Available", description: "Good location")
+      Property.create(name: "Property2", price: "£40", availability: "Available", description: "Bad location")
+      Property.create(name: "Property3", price: "£60", availability: "Unavailable", description: "Swimming Pool")
+      Property.create(name: "Property4", price: "£70", availability: "Available", description: "Rooftop bar")
+          
       properties = Property.all
 
-      expect(properties.length).to eq 5
+      expect(properties.length).to eq 4
       expect(properties.first).to be_a Property
       expect(properties.first.id).to eq property.id
       expect(properties.first.name).to eq 'Property1'
@@ -20,14 +23,14 @@ describe Property do
 
   describe '.create' do
     it 'creates a new property listing' do
-      property = Property.create(name: "Property5", price: "£50", availability: "Available", description: "Good location").first
+      property = Property.create(name: "Property5", price: "£50", availability: "Available", description: "Good location")
       persisted_data = persisted_data(id: property.id)
 
       expect(property).to be_a Property
       expect(property.id).to eq persisted_data['id']
       expect(property.name).to eq 'Property5'
       expect(property.price).to eq '£50'
-      expect(property.availability).to eq 'Availability'
+      expect(property.availability).to eq 'Available'
       expect(property.description).to eq 'Good location'
     end
   end

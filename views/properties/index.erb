@@ -2,6 +2,9 @@
   <% @properties.each do |property| %>
     <li>
       <%= property.name %>
+      <%= property.price %>
+      <%= property.availability %>
+      <%= property.description %>
     </li>
   <% end %>
 </ul>
