@@ -1,0 +1,1 @@
+ALTER TABLE spaces ADD COLUMN username VARCHAR(60);
