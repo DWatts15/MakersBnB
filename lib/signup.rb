@@ -1,5 +1,8 @@
-
 class Signup
+
+  attr_reader :logged_in_as
+
+
 
   def signup(user, pass)
 
@@ -17,10 +20,12 @@ class Signup
 
     result = connection.exec("SELECT username, password FROM login_details WHERE username = '#{user}' AND password = '#{pass}';")
 
-    
+
     begin result[0]
-      puts('logged in')
+      @logged_in_as = user
+      puts 'valid login'
     rescue
+      @logged_in_as = FALSE
       puts ('invalid login')
     end
 

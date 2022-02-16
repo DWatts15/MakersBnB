@@ -19,14 +19,25 @@ class MakersBnB < Sinatra::Base
     signup = Signup.new
     signup.signup(@username, @password)
 
+    erb :signup
+  end
+
+  post '/login' do
+
+    signup = Signup.new
+
     @username_login = params[:username_login]
     @password_login = params[:password_login]
 
     signup.login(@username_login, @password_login)
 
-    erb :signup
+    if signup.logged_in_as != FALSE
+      'logged in'
+    else
+      'Invalid login'
+      erb :signup
+    end
   end
-
 
 
 
