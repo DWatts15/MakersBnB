@@ -41,7 +41,7 @@ class MakersBnB < Sinatra::Base
   end
 
 
-  get '/availability' do
+  get '/properties' do
     @properties = Property.all
     erb :'properties/index'
   end
