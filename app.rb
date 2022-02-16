@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require_relative './lib/property.rb'
 
 require_relative './lib/signup'
 require 'pg'
@@ -40,32 +41,19 @@ class MakersBnB < Sinatra::Base
   end
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   get '/availability' do
     @properties = Property.all
     erb :'properties/index'
   end
 
-run! if app_file == $0
+  get '/properties/new' do
+    erb :'properties/new'
+  end
+
+  post '/properties' do
+    Property.create(name: params[:name], price: params[:price], availability: params[:availability], description: params[:description])
+    redirect '/properties'
+  end
+
+  run! if app_file == $0
 end

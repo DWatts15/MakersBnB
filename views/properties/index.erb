@@ -1,5 +1,14 @@
+<h1> Properties: </h1>
+
 <ul>
   <% @properties.each do |property| %>
-    <li><%= property %></li>
+    <li>
+      <%= property.name %>
+      <%= property.price %>
+      <%= property.availability %>
+      <%= property.description %>
+    </li>
   <% end %>
 </ul>
+
+
