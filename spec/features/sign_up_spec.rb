@@ -32,13 +32,7 @@ feature 'Sign up' do
     connection = PG.connect(dbname: 'login')
     result = connection.exec('SELECT username, password FROM login_details;')
 
-    expect(@username_sign_in).to eq (result[0]["username"])
+    expect("test username").to eq (result[0]["username"])
     expect("test password").to eq (result[0]["password"])
   end
-
-
-
-
-
-
 end

@@ -19,8 +19,10 @@ class MakersBnB < Sinatra::Base
     signup = Signup.new
     signup.signup(@username, @password)
 
-    @username_sign_in = params[:username_sign_in]
-    @password_sign_in = params[:password_sign_in]
+    @username_login = params[:username_login]
+    @password_login = params[:password_login]
+
+    signup.login(@username_login, @password_login)
 
     erb :signup
   end

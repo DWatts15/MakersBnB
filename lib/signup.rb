@@ -12,5 +12,19 @@ class Signup
     connection.exec('SELECT * FROM login_details;')
   end
 
-  
+  def login(user, pass)
+    connection = PG.connect(dbname: 'login')
+
+    result = connection.exec("SELECT username, password FROM login_details WHERE username = '#{user}' AND password = '#{pass}';")
+
+    
+    begin result[0]
+      puts('logged in')
+    rescue
+      puts ('invalid login')
+    end
+
+  end
+
+
 end
