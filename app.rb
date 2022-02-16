@@ -6,6 +6,7 @@ require_relative './lib/signup'
 require 'pg'
 
 class MakersBnB < Sinatra::Base
+  enable :sessions
   configure :development do
     register Sinatra::Reloader
   end
@@ -32,7 +33,9 @@ class MakersBnB < Sinatra::Base
 
     signup.login(@username_login, @password_login)
 
+
     if signup.logged_in_as != false
+      session[:username] = signup.logged_in_as
       redirect '/properties'
     else
       'Invalid login'
@@ -46,7 +49,12 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/properties/new' do
-    erb :'properties/new'
+    @username = session[:username]
+    if @username.class == NilClass
+      redirect '/signup'
+    else
+      erb :'properties/new'
+    end
   end
 
   post '/properties' do
