@@ -58,7 +58,6 @@ class MakersBnB < Sinatra::Base
   end
 
   post '/properties' do
-    new_var = "String"
     Property.create(name: params[:name], price: params[:price], availability: params[:availability], description: params[:description], username: params[:username])
     redirect '/properties'
   end
