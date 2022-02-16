@@ -1,13 +1,20 @@
+<a href='properties/new'>Create new property listing</a>
+
 <h1> Properties: </h1>
 
+
 <ul>
-  <% @properties.each do |property| %>
-    <li>
-      <%= property.name %>
-      <%= property.price %>
-      <%= property.availability %>
-      <%= property.description %>
-    </li>
+  <% if @properties %>
+    <% @properties.each do |property| %>
+      <li>
+        <%= property.name %>
+        <%= property.price %>
+        <%= property.availability %>
+        <%= property.description %>
+      </li>
+    <% end %>
+  <% else %>
+    No properties currently listed
   <% end %>
 </ul>
 

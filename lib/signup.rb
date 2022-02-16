@@ -25,7 +25,7 @@ class Signup
       @logged_in_as = user
       puts 'valid login'
     rescue
-      @logged_in_as = FALSE
+      @logged_in_as = false
       puts ('invalid login')
     end
 

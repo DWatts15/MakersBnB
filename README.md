@@ -82,3 +82,9 @@ As a host,
 So that I can choose my customers,
 I want the space to show as available until the booking has been confirmed
 
+## User flow
+
+1. Register for MakersBnB/Login 
+2. Go to Properties page
+3. Create new Property (logged in? true -> Pull username/password + make new Property, false -> back to Login page)
+4. 

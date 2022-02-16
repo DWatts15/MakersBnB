@@ -32,14 +32,13 @@ class MakersBnB < Sinatra::Base
 
     signup.login(@username_login, @password_login)
 
-    if signup.logged_in_as != FALSE
-      'logged in'
+    if signup.logged_in_as != false
+      redirect '/properties'
     else
       'Invalid login'
       erb :signup
     end
   end
-
 
   get '/properties' do
     @properties = Property.all
