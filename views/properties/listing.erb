@@ -3,6 +3,7 @@
 <h1> Properties: </h1>
 
 <ul>
+<%puts @properties%>
   <% if @properties %>
     <% @properties.each do |property| %>
       <li>
@@ -18,9 +19,22 @@
   <% end %>
 </ul>
 
-
-  <%# result = connection.exec("SELECT * WHERE id = '#{property_id}';") %>
-
+<% @properties.each do |property| %>
+        <%if property.username == @username %>
+          <h1> You are the host of this property </h1>
+        <%else%>
+          <h1> You are the user </h1>
+          <h3> Make a reservation: </h3>
+          <%availability = ['day1', 'day2', 'day3'] %>
+          <%availability.each do |i|%>
+            <form action='/properties/pending' method='post'>
+            <input type="checkbox" name="date[]" value=<%=i%> />
+            <label for="date"> <%=i%> </label><br>
+          <%end%>
+          <input type="submit" value="Submit"/>
+          </form>
+        <%end%>
+    <% end %>
 
 </div>
 
