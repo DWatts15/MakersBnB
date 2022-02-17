@@ -1,3 +1,32 @@
-<div id="property"> </div>
-<div id="user"> </div>
+<div id="property"> 
+
+<h1> Properties: </h1>
+
+<ul>
+  <% if @properties %>
+    <% @properties.each do |property| %>
+      <li>
+        <%= property.name %>
+        <%= property.price %>
+        <%= property.availability %>
+        <%= property.description %>
+        <%= property.username %>
+      </li>
+    <% end %>
+  <% else %>
+    No properties currently listed
+  <% end %>
+</ul>
+
+
+  <%# result = connection.exec("SELECT * WHERE id = '#{property_id}';") %>
+
+
+</div>
+
+
+
+
+
+<div id="user">Start working on user  </div>
 <div id="host"> </div>

@@ -63,6 +63,7 @@ class MakersBnB < Sinatra::Base
   end
 
   get '/properties/listing' do
+    @properties = Property.individual(2)
     erb :'properties/listing'
   end
 
