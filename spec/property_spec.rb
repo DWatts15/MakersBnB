@@ -4,10 +4,10 @@ require 'database_helper'
 describe Property do
   describe '.all' do
     it 'returns all properties' do
-      property = Property.create(name: "Property1", price: "£50", availability: "Available", description: "Good location")
-      Property.create(name: "Property2", price: "£40", availability: "Available", description: "Bad location")
-      Property.create(name: "Property3", price: "£60", availability: "Unavailable", description: "Swimming Pool")
-      Property.create(name: "Property4", price: "£70", availability: "Available", description: "Rooftop bar")
+      property = Property.create(name: "Property1", price: "£50", availability: "Available", description: "Good location", username: "Dummy_user")
+      Property.create(name: "Property2", price: "£40", availability: "Available", description: "Bad location", username: "Dummy_user")
+      Property.create(name: "Property3", price: "£60", availability: "Unavailable", description: "Swimming Pool", username: "Dummy_user")
+      Property.create(name: "Property4", price: "£70", availability: "Available", description: "Rooftop bar", username: "Dummy_user")
           
       properties = Property.all
 

@@ -62,8 +62,14 @@ class MakersBnB < Sinatra::Base
     redirect '/properties'
   end
 
+  post '/get_property_id' do
+    session[:property_id] = params[:property_id]
+    redirect ('/properties/listing')
+  end
+
   get '/properties/listing' do
-    @properties = Property.individual(2)
+    @property_id = session[:property_id]
+    @properties = Property.individual(@property_id)
     erb :'properties/listing'
   end
 

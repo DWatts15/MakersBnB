@@ -1,22 +1,26 @@
 <a href='properties/new'>Create new property listing</a>
 
 <h1> Properties: </h1>
-
-
-<ul>
-  <% if @properties %>
-    <% @properties.each do |property| %>
-      <li>
-        <%= property.name %>
-        <%= property.price %>
-        <%= property.availability %>
-        <%= property.description %>
-        <%= property.username %>
-      </li>
+<form method="POST" action="/get_property_id">
+  <ul>
+    <% if @properties %>
+      <% @properties.each do |property| %>
+        <a href='properties/listing' id="<%= property.id %>">
+        <li>
+          <%= property.id %>
+          <%= property.name %>
+          <%= property.price %>
+          <%= property.availability %>
+          <%= property.description %>
+          <%= property.username %>
+          <input type="submit" value="<%= property.id %>" name="property_id" placeholder="View Property"/>
+        </li>
+        </a>
+      <% end %>
+    <% else %>
+      No properties currently listed
     <% end %>
-  <% else %>
-    No properties currently listed
-  <% end %>
-</ul>
+  </ul>
+</form>
 
 

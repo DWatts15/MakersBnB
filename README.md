@@ -98,3 +98,12 @@ Shalini + Dan:
 Fred + Abdul:
 - Implement sessions
 - Redirect new property (not logged in) back to login page
+
+
+Abdul + Dan:
+- Hyperlink each property on listings (index)
+- Clicking the hyperlink will pass property id to variable (listing_page_property_id) in app.rb
+- On individual property page, pull that listing_page_property_id and use this to display the correct property details
+
+- User controls will also be pulled at the same time
+- Change 'availability' parameter from string to array on the erb file
