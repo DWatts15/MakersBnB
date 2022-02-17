@@ -1,0 +1,1 @@
+ALTER TABLE spaces ADD COLUMN reservation VARCHAR(200);
