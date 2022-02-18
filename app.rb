@@ -3,18 +3,25 @@ require 'sinatra/reloader'
 require_relative './lib/property.rb'
 
 require_relative './lib/signup'
+# pg = postgres
 require 'pg'
 
+# something about inheritance
 class MakersBnB < Sinatra::Base
+  # sessions stores a variable when defined once (like a cookie), to be used across the app
   enable :sessions
   configure :development do
     register Sinatra::Reloader
   end
 
+  # the naming convention may need improving as this page represents both the sign up and login page
   get '/signup' do
     erb :signup
   end
 
+  # params relates to the username and password entered into the form. These are then assigned to the @username and @password
+  # variables. A new instance of the Signup class is created, and the @username and @password variables are passed as arguments
+  # into the signup method of the Signup class.
   post '/signup' do
     @username = params[:username]
     @password = params[:password]
@@ -24,6 +31,10 @@ class MakersBnB < Sinatra::Base
     erb :signup
   end
 
+  # this route is a post request - this signifies that the requestor wishes to change or add new data to the server.
+  # A new instance of the Signup class is instantiated. A Signup class is required separately for the /signup and /login routes.
+  # Params are taken from the form, and assigned to the @username_login and @password_login variables.
+  # The login method of the Signup class is called, with arguments of @username_login and @password_login
   post '/login' do
 
     signup = Signup.new
@@ -34,7 +45,9 @@ class MakersBnB < Sinatra::Base
     signup.login(@username_login, @password_login)
 
 
-    #attempt login
+    # User attempts to log in. If we found a match for the username and password in the database, a session is created
+    # and the username is stored in session. Then we redirect to the '/properties' route.
+    # Otherwise, if there was no match to the database, return 'Invalid login' and return to the sign up page.
     if signup.logged_in_as != false
       session[:username] = signup.logged_in_as
       redirect '/properties'
@@ -44,7 +57,8 @@ class MakersBnB < Sinatra::Base
     end
   end
 
-  #list all properties
+  # lists all properties. This may work as the 'homepage' - index.html is considered the homepage and this may be a better route name
+  # the session username is assigned to @username. 
   get '/properties' do
      @username = session[:username] #ADDED THIS IN TOO
 
@@ -82,7 +96,7 @@ class MakersBnB < Sinatra::Base
     @properties = Property.individual(@property_id)
     erb :'properties/reservation'
   end
-  
+
   #add reservation to database
   post '/properties/pending' do
     @property_id = session[:property_id]
