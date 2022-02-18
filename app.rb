@@ -71,16 +71,16 @@ class MakersBnB < Sinatra::Base
   post '/get_property_id' do
     session[:property_id] = params[:property_id]
     p "get_property_id"
-    redirect ('/properties/listing')
+    redirect ('/properties/reservation')
   end
 
   #show individual property from database
-  get '/properties/listing' do
-    p "listing"
+  get '/properties/reservation' do
+    p "reservation"
     @property_id = session[:property_id]
     @username = session[:username]
     @properties = Property.individual(@property_id)
-    erb :'properties/listing'
+    erb :'properties/reservation'
   end
 
   #add reservation to database
