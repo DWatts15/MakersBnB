@@ -68,12 +68,17 @@ class MakersBnB < Sinatra::Base
     redirect '/properties'
   end
 
+  post '/get_property_id' do
+    session[:property_id] = params[:property_id]
+    redirect ('/properties/listing')
+  end
+
   #show individual property from database
   get '/properties/listing' do
+    @property_id = session[:property_id]
     @username = session[:username]
-    @properties = Property.individual(3) #change 3 to property_id
-    erb :'properties/listing'
-  end
+    @properties = Property.individual(@property_id)
+
 
   #add reservation to database
   post '/properties/pending' do
@@ -81,10 +86,6 @@ class MakersBnB < Sinatra::Base
     reservation = Property.reserve(@dates, 11) #change 3 to property_id
     erb :'properties/pending'
   end
-
-  
-
-  
 
   run! if app_file == $0
 end

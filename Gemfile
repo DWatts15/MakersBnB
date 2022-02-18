@@ -2,11 +2,10 @@
 
 source "https://rubygems.org"
 
-gem 'pg'
-
 # gem "rails"
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'rspec'
 gem 'capybara'
 gem 'pg'
+gem 'launchy'

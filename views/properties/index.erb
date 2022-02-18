@@ -35,7 +35,7 @@
           </thead>
           
 <tbody>
-    
+    <form method="POST" action="/get_property_id">
       <% @properties.each do |property| %>
       <tr>
         <th scope="row"><img src="https://via.placeholder.com/100x70"></th>
@@ -44,11 +44,12 @@
         <td class="align-middle"><%= property.availability %></td>
         <td class="align-middle"><%= property.description %></td>
         <td class="align-middle"><%= property.username %></td>
+        <input type="submit" value="<%= property.id %>" name="property_id" placeholder="View Property"/>
       </tr>
   
        
       <% end %>
-
+  </form>
         </tbody>
 
     </table>
@@ -57,6 +58,7 @@
     <% end %>
 
 </div>
+
 
 
 </body>
