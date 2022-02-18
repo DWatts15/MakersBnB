@@ -82,13 +82,13 @@ class MakersBnB < Sinatra::Base
     @properties = Property.individual(@property_id)
     erb :'properties/reservation'
   end
-
+  
   #add reservation to database
   post '/properties/pending' do
+    @property_id = session[:property_id]
     @dates = params[:date]
-    reservation = Property.reserve(@dates, 11) #change 3 to property_id
+    reservation = Property.reserve(@dates, @property_id) #change 3 to property_id
     erb :'properties/pending'
   end
-
   run! if app_file == $0
 end

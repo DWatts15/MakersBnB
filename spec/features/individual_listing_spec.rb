@@ -1,5 +1,6 @@
 feature 'viewing an individual property listing' do
   scenario 'a user clicks a link to view a property' do
+    setup_test_database
     visit('/signup')
 
     page.fill_in 'username', with: 'Test username'
@@ -10,15 +11,10 @@ feature 'viewing an individual property listing' do
     connection = PG.connect(dbname: 'login')
     connection.exec("INSERT INTO login_details (username, password) VALUES ('test username', 'test password');")
 
-    # result = connection.exec('SELECT * FROM login_details;')
-
     page.fill_in 'username_login', with: 'test username'
     page.fill_in 'password_login', with: 'test password'
 
     click_button('submit_login')
-
-    # connection = PG.connect(dbname: 'login')
-    # result = connection.exec('SELECT username, password FROM login_details;')
 
     property = Property.create(name: "Property1", price: "£50", availability: "Available", description: "Good location", username: "Dummy_user")
     Property.create(name: "Property2", price: "£40", availability: "Available", description: "Bad location", username: "Dummy_user")
@@ -26,19 +22,11 @@ feature 'viewing an individual property listing' do
     Property.create(name: "Property4", price: "£70", availability: "Available", description: "Rooftop bar", username: "Dummy_user")
 
     visit('/properties')
-
-
-    save_and_open_page
+    
     var = "#" + "#{property.id}"
     expect(page).to have_selector(var)
-    
-    # expect(page).to has_link?('#test')
-    # expect(page).to have_link('2', href: '/properties/listing')
-    # expect(page).to have_link('3', href: '/properties/listing')
-    # expect(page).to have_link('4', href: '/properties/listing')
 
-    property_id = "#{property.id}"
-    click_link(property_id)
+    find(var).click
 
     expect(page).to have_content('Property1')
     expect(page).to have_content('£50')

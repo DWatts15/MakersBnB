@@ -1,5 +1,6 @@
 feature 'Adding a new property' do
   scenario 'A user can add a property to MakersBnB' do
+    add_row_to_test_database
     visit('/properties/new')
     fill_in('name', with: 'New_Property')
     fill_in('price', with: '£50')

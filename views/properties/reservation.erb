@@ -1,11 +1,8 @@
 <%# 111111  %><head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <%# 111111 %></head>
-
-<div id="property" class="container d-flex justify-content-evenly align-items-center vw-100 text-center flex-column"> 
-
-<h1> Properties: </h1>
-
+<div id="property" class="container d-flex justify-content-evenly align-items-center vw-100 text-center flex-column">
+<h1> Property: </h1>
 <ul>
 <%puts @properties%>
   <% if @properties %>
@@ -22,12 +19,10 @@
     No properties currently listed
   <% end %>
 </ul>
-
 <% @properties.each do |property| %>
         <%if property.username == @username %>
           <h1> You are the host of this property </h1>
         <%else%>
-          <h1> You are the user </h1>
           <h3> Make a reservation: </h3>
           <%availability = ['day1', 'day2', 'day3'] %>
           <%availability.each do |i|%>
@@ -39,12 +34,5 @@
           </form>
         <%end%>
     <% end %>
-
 </div>
-
-
-
-
-
-<div id="user">Start working on user  </div>
 <div id="host"> </div>
