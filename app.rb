@@ -46,6 +46,8 @@ class MakersBnB < Sinatra::Base
 
   #list all properties
   get '/properties' do
+     @username = session[:username] #ADDED THIS IN TOO
+
     @properties = Property.all
     erb :'properties/index'
   end
@@ -76,7 +78,7 @@ class MakersBnB < Sinatra::Base
   #add reservation to database
   post '/properties/pending' do
     @dates = params[:date]
-    reservation = Property.reserve(@dates, 3) #change 3 to property_id
+    reservation = Property.reserve(@dates, 11) #change 3 to property_id
     erb :'properties/pending'
   end
 
