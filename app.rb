@@ -86,6 +86,7 @@ class MakersBnB < Sinatra::Base
   #add reservation to database
   post '/properties/pending' do
     @dates = params[:date]
+    @property_id = session[:property_id]
     reservation = Property.reserve(@dates, @property_id) #change 3 to property_id
     erb :'properties/pending'
   end
