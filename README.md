@@ -3,7 +3,7 @@
 Team: Shalini, Fred, Abdul, Dan
 
 # Spec:
-## Headline specifications
+## "Headline specifications"
 
 Any signed-up user can list a new space.
 Users can list multiple spaces.
@@ -13,7 +13,7 @@ Any signed-up user can request to hire any space for one night, and this should 
 Nights for which a space has already been booked should not be available for users to book that space.
 Until a user has confirmed a booking request, that space can still be booked for that night.
 
-## Nice-to-haves
+## "Nice-to-haves"
 
 Users should receive an email whenever one of the following happens:
 They sign up
@@ -82,12 +82,12 @@ As a host,
 So that I can choose my customers,
 I want the space to show as available until the booking has been confirmed
 
+# Planning Phase (working notes)
 ## User flow
 
 1. Register for MakersBnB/Login 
 2. Go to Properties page
 3. Create new Property (logged in? true -> Pull username/password + make new Property, false -> back to Login page)
-4. 
 
 Shalini + Dan:
 - Add username to table
