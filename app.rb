@@ -34,6 +34,7 @@ class MakersBnB < Sinatra::Base
     signup.login(@username_login, @password_login)
 
 
+    #attempt login
     if signup.logged_in_as != false
       session[:username] = signup.logged_in_as
       redirect '/properties'
@@ -43,11 +44,15 @@ class MakersBnB < Sinatra::Base
     end
   end
 
+  #list all properties
   get '/properties' do
+     @username = session[:username] #ADDED THIS IN TOO
+
     @properties = Property.all
     erb :'properties/index'
   end
 
+  #redirect to page depending on logged in or not
   get '/properties/new' do
     @username = session[:username]
     if @username.class == NilClass
@@ -57,6 +62,7 @@ class MakersBnB < Sinatra::Base
     end
   end
 
+  #create new property
   post '/properties' do
     Property.create(name: params[:name], price: params[:price], availability: params[:availability], description: params[:description], username: params[:username])
     redirect '/properties'
@@ -67,10 +73,18 @@ class MakersBnB < Sinatra::Base
     redirect ('/properties/listing')
   end
 
+  #show individual property from database
   get '/properties/listing' do
     @property_id = session[:property_id]
+    @username = session[:username]
     @properties = Property.individual(@property_id)
-    erb :'properties/listing'
+
+
+  #add reservation to database
+  post '/properties/pending' do
+    @dates = params[:date]
+    reservation = Property.reserve(@dates, 11) #change 3 to property_id
+    erb :'properties/pending'
   end
 
   run! if app_file == $0

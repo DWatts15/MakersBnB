@@ -13,6 +13,7 @@ class Property
     @username = username
   end
 
+  #display all properties
   def self.all
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'makersbnb_test')
@@ -27,6 +28,7 @@ class Property
     end
   end
 
+  #create a new property, add to database
   def self.create(name:, price:, availability:, description:, username:)
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'makersbnb_test')
@@ -41,6 +43,8 @@ class Property
       availability: result[0]['availability'], description: result[0]['description'], username: result[0]['username'])
   end
 
+
+  #displays individual property based on ID from database
   def self.individual(property_id)
     if ENV['ENVIRONMENT'] == 'test'
       connection = PG.connect(dbname: 'makersbnb_test')
@@ -57,5 +61,17 @@ class Property
   end
 
 
+  #user can reserve a property
+  def self.reserve(dates, property_id)
+      if ENV['ENVIRONMENT'] == 'test'
+        connection = PG.connect(dbname: 'makersbnb_test')
+      else
+        connection = PG.connect(dbname: 'makersbnb')
+      end
 
-end
+      result = connection.exec("UPDATE spaces SET reservation = '#{dates}' WHERE id = '#{property_id}';")
+
+    end
+  
+  end
+

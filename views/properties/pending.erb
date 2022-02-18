@@ -1,0 +1,11 @@
+<h1> Your confirmation is pending! </h1>
+
+<h2> You have reserved the following days: </h2>
+<% @dates.each do |date| %>
+      <li>
+        <%= date %>
+  <%end%>
+<br>
+<h3> Confirmation is pending </h3>
+<br>
+<a href='properties'>Head back to the properties page.</a>
