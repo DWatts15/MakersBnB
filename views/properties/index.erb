@@ -31,6 +31,7 @@
               <th scope="col">Availability</th>
               <th scope="col">Description</th>
               <th scope="col">Hosts name</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           
@@ -44,7 +45,7 @@
         <td class="align-middle"><%= property.availability %></td>
         <td class="align-middle"><%= property.description %></td>
         <td class="align-middle"><%= property.username %></td>
-        <input type="submit" value="<%= property.id %>" name="property_id" placeholder="View Property"/>
+        <td class="align-middle"><input type="hidden" value="<%= property.id %>" name="property_id"/><input type="submit" value="View Property"/></td>
       </tr>
   
        
